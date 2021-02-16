@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2alpha3   # automate any change in infra files or in code but not in chage dependencies
+apiVersion: skaffold/v2alpha3   # automate any change in infra files or in code or rebuild the image if change in dependencies
 kind: Config
 deploy:
   kubectl:
@@ -16,3 +16,22 @@ build:
         manual:
           - src: 'src/**/*.ts'    # what to watch
             dest: .         # where to sync this file to inside of our running container
+
+# apiVersion: skaffold/v2alpha3
+# kind: Config
+# deploy:
+#   kubectl:
+#     manifests:
+#       - ./infra/k8s/*
+# build:
+#   local:
+#     push: false
+#   artifacts:
+#     - image: stephengrider/auth
+#       context: auth
+#       docker:
+#         dockerfile: Dockerfile
+#       sync:
+#         manual:
+#           - src: 'src/**/*.ts'
+#             dest: .
