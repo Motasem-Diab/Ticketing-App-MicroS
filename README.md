@@ -10,4 +10,7 @@ make a tsc config file by ($tsc --init)
     if any error rerun the command
 
 
-- make ingress nginx
+- make ingress nginx service ...
+- change the hosting on mac in (/etc/hosts) or (C:\Windows\System32\Driver\etc\hosts) in windows
+- if any security issue appears type (thisisunsafe) inside any where in browser
+

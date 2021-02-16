@@ -1,18 +1,16 @@
-
-piVersion: extensions/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress-service
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/user-regex: 'true'  # you can have regex inside file names below
+    nginx.ingress.kubernetes.io/use-regex: 'true'     # you can have regex inside file names below
 spec:
   rules:
-  - host: ticketing.dev      # pretended domain name
-    http:
-      paths:
-      - path: /api/users/?(.*)    # any request to this
-        backend:
-          service:
-            serviceName: auth-srv     # send it to this service
-            servicePort: 3000
+    - host: ticketing.dev         # pretended domain name
+      http:
+        paths:
+          - path: /api/users/?(.*)    # any request to this
+            backend:
+              serviceName: auth-srv     # send it to this service
+              servicePort: 3000
