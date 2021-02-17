@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2alpha3   # automate any change in infra files or in code or rebuild the image if change in dependencies
+apiVersion: skaffold/v2alpha3
 kind: Config
 deploy:
   kubectl:
@@ -6,16 +6,36 @@ deploy:
       - ./infra/k8s/*
 build:
   local:
-    push: false         # whenever we build an image don't push it to docker hub which is the default 
-  artifacts:          # all the things that is going to be built
+    push: false
+  artifacts:
     - image: diabmotasem/auth
       context: auth
       docker:
         dockerfile: Dockerfile
-      sync:         # tells the skaffold how to handle any file that change
+      sync:
         manual:
-          - src: 'src/**/*.ts'    # what to watch
-            dest: .         # where to sync this file to inside of our running container
+          - src: 'src/**/*.ts'
+            dest: .
+
+
+# apiVersion: skaffold/v2alpha3   # automate any change in infra files or in code or rebuild the image if change in dependencies
+# kind: Config
+# deploy:
+#   kubectl:
+#     manifests:
+#       - ./infra/k8s/*
+# build:
+#   local:
+#     push: false         # whenever we build an image don't push it to docker hub which is the default 
+#   artifacts:          # all the things that is going to be built
+#     - image: diabmotasem/auth
+#       context: auth
+#       docker:
+#         dockerfile: Dockerfile
+#       sync:         # tells the skaffold how to handle any file that change
+#         manual:
+#           - src: 'src/**/*.ts'    # what to watch
+#             dest: .         # where to sync this file to inside of our running container
 
 # apiVersion: skaffold/v2alpha3
 # kind: Config

@@ -16,3 +16,4 @@ make a tsc config file by ($tsc --init)
 
 
 - we will use (express-validator) to validate the requests
+- we will write an error handling middleware in a consistent structure and back it to browser in one fashin type of error

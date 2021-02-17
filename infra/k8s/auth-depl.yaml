@@ -6,29 +6,61 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth         # ****
-  template: #how to create each individual pod tha this deployment is going to create
+      app: auth
+  template:
     metadata:
       labels:
-        app: auth         # ****
-    spec:   # tell the pod how to behave
+        app: auth
+    spec:
       containers:
-      - name: auth    # name for loging purpose
-        image: diabmotasem/auth
+        - name: auth
+          image: diabmotasem/auth
 ---
-# default type is ClusterIp service
 apiVersion: v1
 kind: Service
 metadata:
   name: auth-srv
-spec:     # to tell the service how to behave
-  selector: # to tell the service how to find the set of pods to serve the access to
-    app: auth             # ****
+spec:
+  selector:
+    app: auth
   ports:
-    - name: auth 
+    - name: auth
       protocol: TCP
       port: 3000
       targetPort: 3000
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: auth-depl
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: auth         # ****
+#   template: #how to create each individual pod tha this deployment is going to create
+#     metadata:
+#       labels:
+#         app: auth         # ****
+#     spec:   # tell the pod how to behave
+#       containers:
+#       - name: auth    # name for loging purpose
+#         image: diabmotasem/auth
+# ---
+# # default type is ClusterIp service
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: auth-srv
+# spec:     # to tell the service how to behave
+#   selector: # to tell the service how to find the set of pods to serve the access to
+#     app: auth             # ****
+#   ports:
+#     - name: auth 
+#       protocol: TCP
+#       port: 3000
+#       targetPort: 3000
 
 
 
