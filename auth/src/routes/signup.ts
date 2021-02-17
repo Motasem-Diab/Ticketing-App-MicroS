@@ -22,6 +22,7 @@ router.post('/api/users/signup',
             // return res.status(400).send(error.array());
             // throw new Error('Invalid email or password .,');
             throw new RequesValidationError(errors.array());
+            
         }
 
         const { email, password } = req.body;
@@ -29,7 +30,7 @@ router.post('/api/users/signup',
         console.log('Creating User ...');
         //throw new Error('Error connecting to DB');
 
-        throw new DatabaseConnectionError();
+        // throw new DatabaseConnectionError();
 
         res.send({});
 });

@@ -7,6 +7,8 @@ import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
+import mongoose from 'mongoose';
+
 import { errorHandler } from './middleware/error-handler';
 
 import { NotFoundError } from './errors/NotFoundError';
@@ -37,6 +39,29 @@ app.all('*', async()=>{
 
 app.use(errorHandler);
 
-app.listen(3000, ()=>{
-    console.log('Listening to port 3000');
-});
+
+
+const start = async () =>{
+    try{
+        await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
+        useUnifiedTopology: true, 
+        useNewUrlParser: true,
+        useCreateIndex: true
+        })
+        console.log('Connected to auth DB ...');
+        app.listen(3000, ()=>{ console.log('Listening to port 3000');} );
+    }
+    catch (err){
+        console.log('Cant connect to auth DB .. !!!', err)
+    }
+
+    app.listen(3000, ()=>{ 
+        console.log('Listening to port 3000');
+    });
+};
+
+start();
+
+
+
+// app.listen(3000, ()=>{ console.log('Listening to port 3000');} );

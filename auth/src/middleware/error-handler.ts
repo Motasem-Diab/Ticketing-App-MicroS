@@ -9,8 +9,8 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     // we want to response in a consistent way (general structure)
 
     if( err instanceof CustomError){
-        console.log('Custom Error');
-        res.status(err.statusCode).send({ errors: err.serializeError() });
+        console.log('Custom Error ,.');
+        return res.status(err.statusCode).send({ errors: err.serializeError() });
     }
 
     // if( err instanceof RequesValidationError){

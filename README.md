@@ -24,3 +24,6 @@ make a tsc config file by ($tsc --init)
 
 ###############################     -8-     ###############################
 
+- install mongoose in auth dir 
+- create (/inra/k8s/auth-mongo-depl.yaml)
+- know we will loose our data in DB pod if restarted
