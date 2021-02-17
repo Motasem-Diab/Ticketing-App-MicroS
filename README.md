@@ -18,3 +18,9 @@ make a tsc config file by ($tsc --init)
 - we will use (express-validator) to validate the requests
 - we will write an error handling middleware in a consistent structure and back it to browser in one fashin type of error
 - make a new classes for each error (with abstract class) to enforce error classes to implement some methods in our way
+
+- we will use a package called (express-async-errors) it is used if we want to thrown an error inside async function
+
+
+###############################     -8-     ###############################
+
