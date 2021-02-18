@@ -49,14 +49,13 @@ const start = async () =>{
         useCreateIndex: true
         })
         console.log('Connected to auth DB ...');
-        app.listen(3000, ()=>{ console.log('Listening to port 3000');} );
     }
     catch (err){
         console.log('Cant connect to auth DB .. !!!', err)
     }
 
     app.listen(3000, ()=>{ 
-        console.log('Listening to port 3000');
+        console.log('Listening to port 3000 .,');
     });
 };
 
