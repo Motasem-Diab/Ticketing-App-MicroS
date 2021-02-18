@@ -47,8 +47,8 @@ const start = async () =>{
         useUnifiedTopology: true, 
         useNewUrlParser: true,
         useCreateIndex: true
-        })
-        console.log('Connected to auth DB ...');
+        });
+        console.log('Connected to auth DB ..,.');
     }
     catch (err){
         console.log('Cant connect to auth DB .. !!!', err)
