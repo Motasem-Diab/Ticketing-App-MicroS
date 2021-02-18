@@ -31,4 +31,4 @@ make a tsc config file by ($tsc --init)
 
 ###############################     -9-     ###############################
 
-- Mostly we will user JWT inside Cookie to solve the issue of rendering server in react then the React will talk to other services
+- Mostly we will user JWT inside Cookie to solve the issue of server side rendering in react then the React will talk to other services
