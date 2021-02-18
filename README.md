@@ -27,3 +27,8 @@ make a tsc config file by ($tsc --init)
 - install mongoose in auth dir 
 - create (/inra/k8s/auth-mongo-depl.yaml)
 - know we will loose our data in DB pod if restarted
+
+
+###############################     -9-     ###############################
+
+- Mostly we will user JWT inside Cookie to solve the issue of rendering server in react then the React will talk to other services
