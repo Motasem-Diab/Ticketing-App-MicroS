@@ -1,21 +1,31 @@
 import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
+import mongoose from 'mongoose';
+import cookieSession from 'cookie-session';
+
 
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
-import mongoose from 'mongoose';
 
 import { errorHandler } from './middleware/error-handler';
 
 import { NotFoundError } from './errors/NotFoundError';
 
 const app = express();
+app.set('trust proxy', true);  // to use https below
 
 app.use( json() ) ;
+
+app.use(
+    cookieSession({
+        signed: false,   // not encrypted
+        secure: true,   // only with https connection
+    })
+)
 
 // app.get('/api/users/currentuser', (req,res)=>{
 //     res.send('okk');
