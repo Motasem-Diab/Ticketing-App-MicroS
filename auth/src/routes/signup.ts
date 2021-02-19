@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express' ;
 import { body, validationResult } from 'express-validator';
+import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user' ;
 
@@ -41,6 +42,15 @@ router.post('/api/users/signup',
         });
         await user.save();
         console.log('user added ...');
+
+        // Generate token
+        const token = jwt.sign( {id:user.id, email:user.email}, 'asdf' );
+
+        // Store it in a session
+        // req.session.jwt = token;
+        req.session = {
+            jwt: token
+        };
 
         res.status(201).send(user);
 

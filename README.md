@@ -33,3 +33,9 @@ make a tsc config file by ($tsc --init)
 
 - Mostly we will user JWT inside Cookie to solve the issue of server side rendering in react then the React will talk to other services.
 - we will use (cookie-session) library
+- we will use (jsonwebtoken) library
+
+- for create a general secret ($kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf)
+it creates an actual object, to list all secrets ($k get secrets)
+edit deployment config file as seen
+- or we can make a config file for that secret
