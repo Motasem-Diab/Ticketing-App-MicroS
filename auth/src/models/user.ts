@@ -30,7 +30,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-});
+}, {
+    toJSON: {   // It's invoked when trying to send, transform the doc to a JSON object 
+        // many properties can you do here
+        transform(doc, ret){
+            delete ret.password ;
+            delete ret.__v;
+            ret.id = ret._id;
+            delete ret._id;
+        }
+    }
+});     
 
 // A middleware function implemented in mongoose
 userSchema.pre('save', async function(done) {
