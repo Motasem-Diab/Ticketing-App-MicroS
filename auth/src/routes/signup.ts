@@ -44,7 +44,18 @@ router.post('/api/users/signup',
         console.log('user added ...');
 
         // Generate token
-        const token = jwt.sign( {id:user.id, email:user.email}, 'asdf' );
+
+        // Move it at begining
+        // if(!process.env.JWT_KEY){
+        //     throw new Error('jwt key not found !!!');
+        // }
+
+        const token = jwt.sign( {
+            id:user.id, 
+            email:user.email
+        }, 
+        process.env.JWT_KEY ! // ! dont worry we already checked that
+        );
 
         // Store it in a session
         // req.session.jwt = token;

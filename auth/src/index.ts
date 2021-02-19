@@ -52,6 +52,11 @@ app.use(errorHandler);
 
 
 const start = async () =>{
+
+    if(!process.env.JWT_KEY){
+        throw new Error('JWT_KEY not defined !!!');
+    }
+
     try{
         await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
         useUnifiedTopology: true, 

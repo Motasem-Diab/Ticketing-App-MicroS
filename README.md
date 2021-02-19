@@ -39,3 +39,5 @@ make a tsc config file by ($tsc --init)
 it creates an actual object, to list all secrets ($k get secrets)
 edit deployment config file as seen
 - or we can make a config file for that secret
+
+- ($k describe pod <podName>) to descripe what is happening
