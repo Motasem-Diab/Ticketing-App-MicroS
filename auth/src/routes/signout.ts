@@ -3,8 +3,6 @@ import express from 'express' ;
 const router = express.Router();
 
 router.post('/api/users/signout', (req,res)=>{
-    
-    console.log('hhjkl;kj');
     req.session = null;
 
     res.send({});
