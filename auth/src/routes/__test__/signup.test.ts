@@ -62,10 +62,36 @@ it('returns a 404 with duplicates emails', async () => {
         .expect(201);
     
     return request(app)     // return or await
-    .post('/api/users/signup')
-    .send({
+        .post('/api/users/signup')
+        .send({
+            email: 'test@test.com',
+            password: 'password'
+        })
+        .expect(400);
+});
+
+it('sets a cookie after successful singup', async () => {
+    const response = await request(app)     // return or await
+        .post('/api/users/signup')
+        .send({
+            email: 'test@test.com',
+            password: 'password'
+        })
+        .expect(201);
+    
+    expect(response.get('Set-Cookie')).toBeDefined();       // look at secure in app.ts
+});
+
+it('should return the object if signed up correctly', async () => {
+    const user = {
         email: 'test@test.com',
         password: 'password'
-    })
-    .expect(400);
+    }
+    const response = await request(app)     // return or await
+        .post('/api/users/signup')
+        .send(user)
+        .expect(201);
+    
+    expect(response.body).toHaveProperty('email',user.email);
+    expect(response.body).toHaveProperty('id');
 });
