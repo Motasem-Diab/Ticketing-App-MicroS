@@ -39,6 +39,7 @@ router.post('/api/users/signin',
             throw new BadRequesError('Invalid credintials');
         }
 
+        console.log(`user ${exitsingUser.email} signed in `);
         const token = jwt.sign( {
             id:exitsingUser.id, 
             email:exitsingUser.email
