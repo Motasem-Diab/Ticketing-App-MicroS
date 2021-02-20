@@ -41,3 +41,9 @@ edit deployment config file as seen
 - or we can make a config file for that secret
 
 - ($k describe pod <podName>) to descripe what is happening
+
+
+###############################     -10-     ###############################  Testing
+
+- we will use (supertest) libraty to make a fake request to express
+- we will use (jest) library to make tests
