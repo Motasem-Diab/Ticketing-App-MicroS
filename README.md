@@ -48,3 +48,5 @@ edit deployment config file as seen
 - we will use (supertest) libraty to make a fake request to express
 - we will use (jest) library to make tests
 # ($npm i --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server)
+- refactor code, install dep, make setup.ts file.
+- make __test__ dir inside route, then make the file you want to make test inside it

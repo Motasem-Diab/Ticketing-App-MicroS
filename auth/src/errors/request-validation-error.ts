@@ -4,7 +4,7 @@ import { CustomError } from './CustomError';
 
 export class RequesValidationError extends CustomError {
     
-    statusCode = 500
+    statusCode = 400
 
     constructor(public errors: ValidationError[]){
         super('Validation Error'); // logging

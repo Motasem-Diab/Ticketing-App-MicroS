@@ -9,7 +9,7 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     // we want to response in a consistent way (general structure)
 
     if( err instanceof CustomError){
-        console.log('Custom Error ,.');
+        console.log('Custom Error ,.',err.message);
         return res.status(err.statusCode).send({ errors: err.serializeError() });
     }
 
