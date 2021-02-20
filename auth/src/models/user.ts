@@ -63,4 +63,4 @@ const User = mongoose.model<UserDoc, UserModel>('User', userSchema);
 //     return new User(attrs)
 // };
 
-export { User };
+export { User, UserDoc };
