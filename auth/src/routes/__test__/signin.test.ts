@@ -1,7 +1,6 @@
 
 import request from 'supertest';
 import { app } from '../../app';
-import { User } from '../../models/user';
 
 
 it(' returns 400 when the email doesn\'t exitst ', async ()=> {
