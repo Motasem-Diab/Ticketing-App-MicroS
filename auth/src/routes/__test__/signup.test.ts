@@ -10,7 +10,7 @@ it(' return 201 on successful singup', async ()=> {
             password: 'password'
         })
         .expect(201);
-})
+});
 
 
 it(' returns 400 with invalid email', async () => {
