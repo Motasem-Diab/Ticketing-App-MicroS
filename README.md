@@ -60,3 +60,6 @@ for Client Application ($npm i react react-dom next)
 
 - after modify the script in package.json ($npm run dev) "the files inside the page dir" are like a routes we can access it form the url after run the client
 
+- maka a docker file, build it, push it,
+- make a depl file,
+- edit skaffold.yaml file and ingress-srv
