@@ -65,3 +65,5 @@ for Client Application ($npm i react react-dom next)
 - edit skaffold.yaml file and ingress-srv
 
 - make (next.config.js) file to make next watch the changes
+
+- we will refactor the code in (hook) dir

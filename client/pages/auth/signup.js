@@ -2,26 +2,36 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+import useRequest from '../../hooks/use-request';
+
 export default () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
+    const { doRequest, errors } = useRequest({
+        url: '/api/users/signup',
+        method: 'post',
+        body: {
+            email, password
+        }
+    });
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        // console.log(email, password);
-        try{
-            setErrors([]);
-            const response = await axios.post('/api/users/signup', {
-                email, password
-            });
-            // console.log(response.data);
-        }
-        catch(error){
-            // console.log(error.response.data.errors);
-            setErrors(error.response.data.errors);
+        // // console.log(email, password);
+        // try{
+        //     setErrors([]);
+        //     const response = await axios.post('/api/users/signup', {
+        //         email, password
+        //     });
+        //     // console.log(response.data);
+        // }
+        // catch(error){
+        //     // console.log(error.response.data.errors);
+        //     setErrors(error.response.data.errors);
 
-        }
+        // }
+        doRequest()
     }
 
     return <form onSubmit={onSubmit} >
@@ -34,12 +44,13 @@ export default () => {
             <label> Password </label>
             <input value={password} onChange={ e => setPassword(e.target.value)} type="password" className="form-control"/> 
         </div>
-        {errors.length > 0 && <div className="alert alert-danger">
+        {/* {errors.length > 0 && <div className="alert alert-danger">
             <h4> OoOopsss ... </h4>
             <ul className="my-0">
                 { errors.map(err => <li key={err.message}>{err.message}</li>) }
             </ul>
-        </div>}
+        </div>} */}
+        {errors}
         <button className="btn btn-primaty"> Sign Up</button>
     </form>;
 };
