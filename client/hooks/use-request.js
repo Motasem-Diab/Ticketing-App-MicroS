@@ -3,13 +3,18 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-export default ({ url, method, body}) => {
+export default ({ url, method, body, onSuccess}) => {
     const [errors, setErrors] = useState(null);
 
     const doRequest = async () => {
         try{
             setErrors(null);
             const response = await axios[method](url, body);
+
+            if(onSuccess){      // Alternative for throw Error
+                onSuccess(response.data);
+            }
+
             return response.data ;
         }
         catch(err){
@@ -21,6 +26,8 @@ export default ({ url, method, body}) => {
                 </ul>
                 </div>
             )
+
+            // You can throw the error here so you will not be navigated to the signned in page if you got any error
         }
     };
 

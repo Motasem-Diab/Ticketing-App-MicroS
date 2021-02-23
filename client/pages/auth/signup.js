@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import useRequest from '../../hooks/use-request';
 
+import Router from 'next/router';   // To navigate to another page when signed in
+
 export default () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,11 +15,13 @@ export default () => {
         method: 'post',
         body: {
             email, password
-        }
+        },
+        onSuccess: () => Router.push('/')
     });
 
     const onSubmit = async (event) => {
         event.preventDefault();
+
         // // console.log(email, password);
         // try{
         //     setErrors([]);
@@ -29,9 +33,10 @@ export default () => {
         // catch(error){
         //     // console.log(error.response.data.errors);
         //     setErrors(error.response.data.errors);
-
         // }
-        doRequest()
+        await doRequest();
+
+        // Router.push('/');
     }
 
     return <form onSubmit={onSubmit} >
