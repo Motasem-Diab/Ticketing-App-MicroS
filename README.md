@@ -63,3 +63,5 @@ for Client Application ($npm i react react-dom next)
 - maka a docker file, build it, push it,
 - make a depl file,
 - edit skaffold.yaml file and ingress-srv
+
+- make (next.config.js) file to make next watch the changes

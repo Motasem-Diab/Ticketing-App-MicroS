@@ -17,8 +17,8 @@ build:
           - src: 'src/**/*.ts'
             dest: .
 
-    - image: diabmotasem/auth
-      context: auth
+    - image: diabmotasem/client
+      context: client
       docker:
         dockerfile: Dockerfile
       sync:
