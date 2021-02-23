@@ -59,3 +59,4 @@ it creates an actual object, to list all secrets ($k get secrets)
 for Client Application ($npm i react react-dom next)
 
 - after modify the script in package.json ($npm run dev) "the files inside the page dir" are like a routes we can access it form the url after run the client
+
