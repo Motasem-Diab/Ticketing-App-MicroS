@@ -67,3 +67,15 @@ for Client Application ($npm i react react-dom next)
 - make (next.config.js) file to make next watch the changes
 
 - we will refactor the code in (hook) dir
+
+---------------------------------------------------------------------------------
+# Big issue (Error) for server side rendering when call axios in (LandingPage.getInitialProps) says we cant access localhost:80 (Error: connect ECONNREFUSED). when we make another request from inside the cluster (on server)
+it works if we make the request inside LandingPage function "it's in the browser" so we have to made some configuration.
+In case of request to "/api/users/currentuser" from the browser, the (my computer) networking layer will add "https://ticketing.dev:80" as a prefix for the url, then make the request as normal to ingress-nginx, so this will return the data. as shown in figure 
+    But in case we request to this url on the server as we want to do inside (LandingPage.getInitialProps), the kubernetes networking layer will add (https://localhost:80) as prefix to the url but we are in different world !!!! we are realy inside the cluster 
+- Solution #2: we have to tell that if we made the request from the browser then do your work, if the request is on the server then make the prefix to service url (https://auth-srv) then made the request (you was in the server) but if we want to make a request to another service, does we have to change the prefix ??
+- Solution #1: the request go to Ingress then it will decide the prefix based on the path then made the request. Note: we have to extract the cookie from the coming request to client and put it in the new request to Ingress for rendering some data
+
+NameSpace problem ($k get namespace): we can access another srv by type its url (auth-srv) but this works if we will be inside the same nameSpace (solution #2), but if we want to reach Ingress from cluster "solution #1" (it's in another name space) the url will be "http://NAMEOFSERVICE(ingress, get it as below).NAMESPACE.svc.cluster.local"
+- to get all services running inside a name space ($k get services -n NAMESPACE)
+- so you may use (http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser) to reach it from (server), or use External name space that will map this
