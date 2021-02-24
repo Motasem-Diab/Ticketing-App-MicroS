@@ -58,7 +58,9 @@ const LandingPage = ({ currentuser }) => {  // Executed in the browser
 // }
 
 
+// if we made like this in _app it will not be invoked automatically
 LandingPage.getInitialProps = async (context) => {
+    console.log('LANDING PAGE');
     // Like axios
     const { data } = await buildClient(context).get('/api/users/currentuser');
     return data;
