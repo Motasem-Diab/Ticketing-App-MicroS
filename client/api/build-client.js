@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// To use it as a new axios (if we are on the server then use the new url) else do the regular
 export default ({ req }) => {
     if( typeof window === 'undefined'){
         // On the server
