@@ -83,3 +83,8 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 
 
 ############################### -12- ############################### Code sharing and Reuse
+
+- we will made a shared library to use anything related by doing import not writing the code
+- Custom Error
+- Auth Middleware
+- Request validation Middleware
