@@ -88,3 +88,9 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 - Custom Error
 - Auth Middleware
 - Request validation Middleware
+
+- make a dir named common, npm init -y, make some changes in it.
+- to publish the package you have to push it firstly to Git ($git init),($git add .),($git commit -m "initial commit")
+- ($npm login)($npm publish --access public)
+- even if we write in TS we will push "publish" the JS
+ - TS ($tsc --init), ($npm i typescript del-cli --save-dev) then make src dir
