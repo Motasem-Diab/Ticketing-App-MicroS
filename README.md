@@ -79,3 +79,7 @@ In case of request to "/api/users/currentuser" from the browser, the (my compute
 NameSpace problem ($k get namespace): we can access another srv by type its url (auth-srv) but this works if we will be inside the same nameSpace (solution #2), but if we want to reach Ingress from cluster "solution #1" (it's in another name space) the url will be "http://NAMEOFSERVICE(ingress, get it as below).NAMESPACE.svc.cluster.local"
 - to get all services running inside a name space ($k get services -n NAMESPACE)
 - so you may use (http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser) to reach it from (server), or use External name space that will map this
+
+
+
+############################### -12- ############################### Code sharing and Reuse
