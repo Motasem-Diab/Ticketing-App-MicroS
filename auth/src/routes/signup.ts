@@ -2,13 +2,13 @@ import express, {Request, Response} from 'express' ;
 import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
-import { validateRequest } from '../../../common/src/middleware/validate-request';
+import { validateRequest } from '@e-commerce-social-media/common';
 
 import { User } from '../models/user' ;
 
-import { RequesValidationError } from '../errors/request-validation-error';
-import { DatabaseConnectionError } from '../errors/database-connection-error';
-import { BadRequesError } from '../errors/BadRequestError';
+import { RequesValidationError } from '@e-commerce-social-media/common';
+import { DatabaseConnectionError } from '@e-commerce-social-media/common';
+import { BadRequesError } from '@e-commerce-social-media/common';
 
 const router = express.Router();
 

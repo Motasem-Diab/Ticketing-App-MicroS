@@ -1,11 +1,12 @@
 import express, {Request, Response} from 'express' ;
 import { body, validationResult } from 'express-validator';
-import { RequesValidationError } from '../errors/request-validation-error';
+import { RequesValidationError } from '@e-commerce-social-media/common';
 import { User, UserDoc } from '../models/user';
 import jwt from 'jsonwebtoken';
 
-import { validateRequest } from '../../../common/src/middleware/validate-request';
-import { BadRequesError } from '../errors/BadRequestError';
+import { validateRequest } from '@e-commerce-social-media/common';
+import { BadRequesError } from '@e-commerce-social-media/common';
+
 import { Password } from '../services/Password';
 
 const router = express.Router();

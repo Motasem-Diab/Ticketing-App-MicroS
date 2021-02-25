@@ -10,9 +10,9 @@ import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
 
-import { errorHandler } from '../../common/src/middleware/error-handler';
+import { errorHandler } from '@e-commerce-social-media/common';
 
-import { NotFoundError } from './errors/NotFoundError';
+import { NotFoundError } from '@e-commerce-social-media/common';
 
 const app = express();
 app.set('trust proxy', true);  // to use https below
