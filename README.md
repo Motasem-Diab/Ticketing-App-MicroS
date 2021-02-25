@@ -100,3 +100,5 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
  - for any change: ($git status), ($git add .), ($git commit -m "message"), ($npm version patch||or other ), ($npm run build), ($npm publish) or make a new script.
  - do like in index.ts
  - install the module in your service, import what you want
+
+ - for any change in common lib: (like what we made before), in auth Service ($npm update @e-commerce-social-media/common)
