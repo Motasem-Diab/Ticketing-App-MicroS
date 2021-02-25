@@ -10,7 +10,7 @@ import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
 
-import { errorHandler } from './middleware/error-handler';
+import { errorHandler } from '../../common/src/middleware/error-handler';
 
 import { NotFoundError } from './errors/NotFoundError';
 

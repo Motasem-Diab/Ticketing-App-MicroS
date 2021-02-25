@@ -93,4 +93,10 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 - to publish the package you have to push it firstly to Git ($git init),($git add .),($git commit -m "initial commit")
 - ($npm login)($npm publish --access public)
 - even if we write in TS we will push "publish" the JS
- - TS ($tsc --init), ($npm i typescript del-cli --save-dev) then make src dir
+ - TS init: ($tsc --init), ($npm i typescript del-cli --save-dev) then make src dir
+ - modify tsconfig.json (13,17"add build")
+ - add (.gitignore) file
+ - ($npm run build)
+ - for any change: ($git status), ($git add .), ($git commit -m "message"), ($npm version patch||or other ), ($npm run build), ($npm publish) or make a new script.
+ - do like in index.ts
+ - install the module in your service, import what you want

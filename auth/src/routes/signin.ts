@@ -4,7 +4,7 @@ import { RequesValidationError } from '../errors/request-validation-error';
 import { User, UserDoc } from '../models/user';
 import jwt from 'jsonwebtoken';
 
-import { validateRequest } from '../middleware/validate-request';
+import { validateRequest } from '../../../common/src/middleware/validate-request';
 import { BadRequesError } from '../errors/BadRequestError';
 import { Password } from '../services/Password';
 
