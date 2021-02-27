@@ -19,7 +19,9 @@ spec:
           #   limits:
           #     memory: "128Mi"
           #     cpu: "500m"
-          env: 
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth' 
             - name: JWT_KEY    # that can be seen inside the pod
               valueFrom:
                 secretKeyRef:     # from did command

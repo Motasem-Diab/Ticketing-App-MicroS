@@ -15,7 +15,9 @@ spec:
       containers:
         - name: tickets
           image: diabmotasem/tickets
-          env: 
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://tickets-mongo-srv:27017/tickets' 
             - name: JWT_KEY    # that can be seen inside the pod
               valueFrom:
                 secretKeyRef:     # from did command
