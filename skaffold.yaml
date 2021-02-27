@@ -26,6 +26,15 @@ build:
           - src: '**/*.js'
             dest: .
 
+    - image: diabmotasem/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
 
 # apiVersion: skaffold/v2alpha3   # automate any change in infra files or in code or rebuild the image if change in dependencies
 # kind: Config
