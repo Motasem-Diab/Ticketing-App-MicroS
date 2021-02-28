@@ -4,11 +4,13 @@ import mongoose from 'mongoose';
 import { app } from '../app';
 import request from 'supertest';
 
+import jwt from 'jsonwebtoken';
+
 
 declare global {
     namespace NodeJS {
         interface Global {
-            signin() : Promise<string[]>
+            signin() : string[]
         }
     }
 }
@@ -43,19 +45,26 @@ afterAll( async () => {
 
 
 // Or make it in a seperate file and export it as regular
-global.signin = async () => {
-    const email = 'test@test.com';
-    const password = 'password';
+global.signin =  () => {
+    // We will made a fake jwt
+    // Build a JWT payload. {id, email}
+    const payload = {
+        id: '67899876',
+        email: 'test@test.com'
+    }
 
-    const response = await request(app) 
-        .post('/api/users/signup')
-        .send({
-            email: 'test@test.com',
-            password: 'password'
-        })
-        .expect(201);
-    
-    const cookie = response.get('Set-Cookie');
+    // Create the JWT!
+    const token = jwt.sign(payload, process.env.JWT_KEY!) ;
 
-    return cookie;
+    // Build the session object {JWT: MY_JWT}
+    const session = { jwt: token};
+
+    // Turn that session into json
+    const sessionJSON = JSON.stringify(session);
+
+    // Take json and encode it as base64
+    const base64 = Buffer.from(sessionJSON).toString('base64');
+
+    // Return a string thats the cookie with the encoded data
+    return [`express:sess=${base64}`];
 }

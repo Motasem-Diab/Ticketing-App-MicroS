@@ -6,8 +6,9 @@ import cookieSession from 'cookie-session';
 import { createTicketRouter } from './routes/new';
 
 import { errorHandler } from '@e-commerce-social-media/common';
-
 import { NotFoundError } from '@e-commerce-social-media/common';
+
+import { currentUser } from '@e-commerce-social-media/common';
 
 const app = express();
 app.set('trust proxy', true);  // to use https below
@@ -20,6 +21,9 @@ app.use(
         secure: process.env.NODE_ENV !== 'test'   // only with https connection
     })
 )
+
+app.use(currentUser);
+
 
 app.use(createTicketRouter);
 
