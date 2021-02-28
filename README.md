@@ -104,4 +104,7 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
  - for any change in common lib: (like what we made before), in auth Service ($npm update @e-commerce-social-media/common)
 
 
- ############################### -13- ###############################
+ ############################### -13- ############################### Tickets Service
+
+ - we will use TTD approach
+ 

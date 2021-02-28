@@ -3,7 +3,7 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 
-
+import { createTicketRouter } from './routes/new';
 
 import { errorHandler } from '@e-commerce-social-media/common';
 
@@ -21,13 +21,15 @@ app.use(
     })
 )
 
+app.use(createTicketRouter);
+
+
 
 
 
 app.all('*', async()=>{
     throw new NotFoundError();
 });
-
 
 app.use(errorHandler);
 
