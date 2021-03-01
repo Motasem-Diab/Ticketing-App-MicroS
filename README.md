@@ -113,4 +113,6 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 - NATS (is a simple event-bus) but we will use "NATS Streaming Server" it is on top of NATS
 - See the documintation on docker hub about Commandline options and NATS SS on official site
 
+- We will make a small independent project for nats-streaming
+
 - Create "nats-depl.yaml", 
