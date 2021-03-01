@@ -11,6 +11,7 @@ import { currentUser } from '@e-commerce-social-media/common';
 import { createTicketRouter } from './routes/new';
 import { showTicketRouter } from './routes/showTicket';
 import { showAllTicketsRouter } from './routes/showAllTickets';
+import { updateTicketRouter } from './routes/updateTicket'
 
 const app = express();
 app.set('trust proxy', true);  // to use https below
@@ -30,6 +31,7 @@ app.use(currentUser);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 app.use(showAllTicketsRouter);
+app.use(updateTicketRouter);
 
 
 

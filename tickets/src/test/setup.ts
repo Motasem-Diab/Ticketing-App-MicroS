@@ -48,8 +48,9 @@ afterAll( async () => {
 global.signin =  () => {
     // We will made a fake jwt
     // Build a JWT payload. {id, email}
+
     const payload = {
-        id: '67899876',
+        id: new mongoose.Types.ObjectId().toHexString(), // only to make it random
         email: 'test@test.com'
     }
 
