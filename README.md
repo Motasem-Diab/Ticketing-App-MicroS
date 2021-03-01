@@ -105,6 +105,12 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 
 
  ############################### -13- ############################### Tickets Service
-
  - we will use TTD approach
  
+
+############################### -14- ############################### NATS streaming server (Event-Bus)
+
+- NATS (is a simple event-bus) but we will use "NATS Streaming Server" it is on top of NATS
+- See the documintation on docker hub about Commandline options and NATS SS on official site
+
+- Create "nats-depl.yaml", 
