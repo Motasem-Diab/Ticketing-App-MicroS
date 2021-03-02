@@ -21,8 +21,11 @@ stan.on('connect', () => {
     // const subscription = stan.subscribe('ticket:created');
 
     const options = stan.subscriptionOptions()
-        .setManualAckMode(true);                     // if the Event lossed (information that event handel "add the ..." not saved in DB)
+        .setManualAckMode(true)                     // if the Event lossed (information that event handel "add the ..." not saved in DB)
                                                     // Resend the event after 30s if no Ack
+        .setDeliverAllAvailable()   // Resend all the missed event when the service is down
+        .setDurableName('accounting-service');  // To resend only the events that not proccessed
+                                                // The Queue group is important here to not delete the Durable when restart the service
 
     //                                      channel      Queue group (optional)  optional
     const subscription = stan.subscribe('ticket:created', 'listenerQueueGroup',  options);
