@@ -21,7 +21,7 @@ spec:
               '4222',
               '-m',
               '8222',
-              '-hbi',
+              '-hbi',   # health check (send kill two times if not responds then remove it ) takes 10s
               '5s',
               '-hbt',
               '5s',

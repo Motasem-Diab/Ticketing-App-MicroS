@@ -113,6 +113,21 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 - NATS (is a simple event-bus) but we will use "NATS Streaming Server" it is on top of NATS
 - See the documintation on docker hub about Commandline options and NATS SS on official site
 
-- We will make a small independent project for nats-streaming
+- Create "nats-depl.yaml", we will use it in small project 
 
-- Create "nats-depl.yaml", 
+-------------------------------------------------------------------------------------------------
+- We will make a small independent project for nats-streaming
+- start the project, install depend.s , write some scripts, make it for TS,
+- write the files ..... 
+- make the natsSS listening to port by any option in slides file, we will use option #3
+- (#3): ($k get pods), ($k port-forward NATS_POD_NAME 4222:4222), in another tab ($npm run publish)
+
+- we send the data to NATS server with channel want to reach, the server sends that data to all services subscribed to this channel
+
+- the client can not listen two times (cant run the process "client" twice) because the NATS register the client who connected to listen if the id is hard coded, we can solve this problem if we put the id as random generated
+
+- if we made two copies of a service and send an event, both will handle the event, this may cause a replicas (getting the same comment twice), to solve this we made a ((((( Queue group ))))) this will be inside the channel ( will send the event to randomly to one servise)
+
+- we will do the same (#3) for port 8222 for monitoring, then in http://localhost:8222/streaming you can see many different information (video 273)
+-------------------------------------------------------------------------------------------------
+
