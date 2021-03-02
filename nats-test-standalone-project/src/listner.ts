@@ -1,5 +1,7 @@
-import nats, { Message } from 'node-nats-streaming';
+import nats, { Message, Stan } from 'node-nats-streaming';
 import { randomBytes } from 'crypto';
+
+import { TicketCreatedListener } from './events/TicketCreatedListener';
 
 console.clear();
 //                                      client id
@@ -20,30 +22,34 @@ stan.on('connect', () => {
     // optional callback
     // const subscription = stan.subscribe('ticket:created');
 
-    const options = stan.subscriptionOptions()
-        .setManualAckMode(true)                     // if the Event lossed (information that event handel "add the ..." not saved in DB)
-                                                    // Resend the event after 30s if no Ack
-        .setDeliverAllAvailable()   // Resend all the missed event when the service is down
-        .setDurableName('accounting-service');  // To resend only the events that not proccessed
-                                                // The Queue group is important here to not delete the Durable when restart the service
+    // const options = stan.subscriptionOptions()
+    //     .setManualAckMode(true)                     // if the Event lossed (information that event handel "add the ..." not saved in DB)
+    //                                                 // Resend the event after 30s if no Ack
+    //     .setDeliverAllAvailable()   // Resend all the missed event when the service is down
+    //     .setDurableName('accounting-service');  // To resend only the events that not proccessed
+    //                                             // The Queue group is important here to not delete the Durable when restart the service
 
-    //                                      channel      Queue group (optional)  optional
-    const subscription = stan.subscribe('ticket:created', 'listenerQueueGroup',  options);
+    // //                                      channel      Queue group (optional)  optional
+    // const subscription = stan.subscribe('ticket:created', 'listenerQueueGroup',  options);
 
-    // Look at Message Doc. here
-    subscription.on('message', (msg: Message)=> {
-        // console.log('Message received');
-        const data = msg.getData();
+    // // Look at Message Doc. here
+    // subscription.on('message', (msg: Message)=> {
+    //     // console.log('Message received');
+    //     const data = msg.getData();
 
-        if(typeof data === 'string'){
-            console.log(`Received event #${msg.getSequence()}, with data: ${data}`)
-        }
+    //     if(typeof data === 'string'){
+    //         console.log(`Received event #${msg.getSequence()}, with data: ${data}`)
+    //     }
 
-        msg.ack();  // Send Ack
-    });
+    //     msg.ack();  // Send Ack
+    // });
+
+    new TicketCreatedListener(stan).listen();
 
 });
 
 
 process.on('SIGINT', () => stan.close());
 process.on('SIGTERM', () => stan.close());
+
+
