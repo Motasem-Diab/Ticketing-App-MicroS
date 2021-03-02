@@ -128,6 +128,8 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 
 - if we made two copies of a service and send an event, both will handle the event, this may cause a replicas (getting the same comment twice), to solve this we made a ((((( Queue group ))))) this will be inside the channel ( will send the event to randomly to one servise)
 
-- we will do the same (#3) for port 8222 for monitoring, then in http://localhost:8222/streaming you can see many different information (video 273)
+- we will do the same (#3) for port 8222 for monitoring, then in http://localhost:8222/streaming you can see many different information (video 273.)
+
+- problem of concurrency (deposite, deposite"lage", withdraw"will fail"), many solutions (look at slides)
 -------------------------------------------------------------------------------------------------
 
