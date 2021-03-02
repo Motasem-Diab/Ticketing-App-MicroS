@@ -10,6 +10,13 @@ const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
 stan.on('connect', () => {
     console.log('Listener connected to NATS');
 
+    // When close the connection please exit, so it will not receive any event, 
+    // if we didnt do that we will send an event to it before the 10s then wait for Ack, not receive it then send it againg to another in Queue group
+    stan.on('close', () => {
+        console.log('NATS connection closed');
+        process.exit();
+    });
+
     // optional callback
     // const subscription = stan.subscribe('ticket:created');
 
@@ -33,3 +40,7 @@ stan.on('connect', () => {
     });
 
 });
+
+
+process.on('SIGINT', () => stan.close());
+process.on('SIGTERM', () => stan.close());
