@@ -34,6 +34,9 @@ beforeAll( async ()=> {
 });
 
 beforeEach( async () => {
+
+    jest.clearAllMocks(); // Testing mock event publisher
+
     const collections = await mongoose.connection.db.collections() ;
 
     for( let collection of collections){

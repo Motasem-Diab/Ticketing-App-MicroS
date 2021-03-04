@@ -2,6 +2,8 @@ import request from 'supertest';
 import { app } from '../../app';
 import mongoose from 'mongoose'
 
+// To test NATS
+import { natsWrapper } from '../../nats-wrapper';  
 
 // jest.mock('../../nats-wrapper');  // Make a fake NATS client to pass the tests
 
@@ -104,4 +106,29 @@ it('Updates the ticket provided valid inputs', async () => {
         .send();
     expect(ticketResponse.body.title).toEqual('ticket1.1');
     expect(ticketResponse.body.price).toEqual(10);
+});
+
+
+it('Publishes an Event', async ()=> {
+    const cookie = global.signin();
+
+    const response = await request(app)
+        .post('/api/tickets')
+        .set('Cookie', cookie)
+        .send({
+            title: 'ticket1',
+            price: 1
+        });
+    
+    await request(app)
+        .put(`/api/tickets/${response.body.id}`)
+        .set('Cookie', cookie)
+        .send({
+            title: 'ticket1.1',
+            price: 10
+        })
+        .expect(200)
+    
+    // console.log(natsWrapper);
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
