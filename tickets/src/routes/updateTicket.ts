@@ -34,6 +34,7 @@ async (req:Request, res:Response) => {
     });
     await ticket.save();
 
+    // no await here (dont wait until it is finished)
     new TicketUpdatedPublisher(natsWrapper.client).publish({
         id: ticket.id,
         title: ticket.title,

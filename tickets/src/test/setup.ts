@@ -16,6 +16,9 @@ declare global {
 }
 
 
+jest.mock('../nats-wrapper');  // Make a fake NATS client to pass the tests
+
+
 let mongo: any ;
 beforeAll( async ()=> {
 

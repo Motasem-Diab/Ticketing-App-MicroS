@@ -133,3 +133,7 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 - problem of concurrency (deposite, deposite"lage", withdraw"will fail"), many solutions (look at slides)
 -------------------------------------------------------------------------------------------------
 
+
+############################### -16- ###############################
+
+we will make a fake clientWrapper to make the tests pass (__mocks__) and modify the test uses NATS client (new.test.ts)
