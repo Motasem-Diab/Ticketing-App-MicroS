@@ -3,6 +3,9 @@ import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 import { requireAuth, validateRequest, NotFoundError, NotAuthorizedError } from '@e-commerce-social-media/common';
 
+import { TicketUpdatedPublisher } from '../events/publishers/TicketUpdatedPublisher';
+import { natsWrapper } from '../nats-wrapper';
+
 
 const router = express.Router();
 
@@ -30,6 +33,13 @@ async (req:Request, res:Response) => {
         price: req.body.price
     });
     await ticket.save();
+
+    new TicketUpdatedPublisher(natsWrapper.client).publish({
+        id: ticket.id,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId
+    });
 
     // send the updated
     res.send(ticket);
