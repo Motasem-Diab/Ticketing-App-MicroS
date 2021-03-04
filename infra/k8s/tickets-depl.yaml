@@ -22,7 +22,15 @@ spec:
               valueFrom:
                 secretKeyRef:     # from did command
                   name: jwt-secret
-                  key: JWT_KEY    
+                  key: JWT_KEY   
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name # to be unique
 ---
 apiVersion: v1
 kind: Service
