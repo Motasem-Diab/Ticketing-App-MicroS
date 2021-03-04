@@ -3,6 +3,10 @@ import { requireAuth, validateRequest } from '@e-commerce-social-media/common';
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
 
+import { TicketCreatedPublisher } from '../events/publishers/TicketCreatedPublisher';
+
+import { natsWrapper } from '../nats-wrapper';
+
 
 const router = express.Router();
 
@@ -13,22 +17,29 @@ router.post('/api/tickets', requireAuth, [
 async (req: Request, res: Response) => {
     const {title, price} = req.body;
 
-    const ticket = {
-        title,
-        price,
-        userId: req.currentUser!.id
-    };
-    await Ticket.build(ticket).save();
-
-    const DBticket = await Ticket.find(ticket)
-
-    // const ticket = Ticket.build({
+    // const ticket = {
     //     title,
     //     price,
     //     userId: req.currentUser!.id
-    // });
-    // ticket.save();
-    res.status(201).send(DBticket);
+    // };
+    // await Ticket.build(ticket).save();
+
+    const ticket = Ticket.build({
+        title,
+        price,
+        userId: req.currentUser!.id
+    });
+    await ticket.save();
+
+    new TicketCreatedPublisher(natsWrapper.client).publish({
+        id: ticket.id,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId
+    });
+
+
+    res.status(201).send(ticket);
 });
 
 

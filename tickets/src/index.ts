@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 import { app } from './app';
 
+import { natsWrapper } from './nats-wrapper';
 
 
 const start = async () =>{
@@ -13,7 +14,16 @@ const start = async () =>{
         throw new Error('MONGO_URI is not defined !!!');
     }
 
-    try{
+    try{                
+        //       ticketing is like what we put in infra file and the url also
+        await natsWrapper.connect('ticketing', 'sladkfjhaksld', 'http://nats-srv:4222');
+        natsWrapper.client.on('close', () => {
+            console.log('NATS connection closed');
+            process.exit();
+        });
+        process.on('SIGINT', () => natsWrapper.client.close());
+        process.on('SIGTERM', () => natsWrapper.client.close());
+
         await mongoose.connect(process.env.MONGO_URI, {
         useUnifiedTopology: true, 
         useNewUrlParser: true,
