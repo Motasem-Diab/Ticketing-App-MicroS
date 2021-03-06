@@ -8,10 +8,10 @@ import { NotFoundError } from '@e-commerce-social-media/common';
 
 import { currentUser } from '@e-commerce-social-media/common';
 
-import { createTicketRouter } from './routes/new';
-import { showTicketRouter } from './routes/showTicket';
-import { showAllTicketsRouter } from './routes/showAllTickets';
-import { updateTicketRouter } from './routes/updateTicket'
+import { deleteOrderRouter } from './routes/deleteOrder';
+import { newOrderRouter } from './routes/newOrder';
+import { showAllOrdersRouter } from './routes/showAllOrders';
+import { showOrderRouter } from './routes/showOrder'
 
 const app = express();
 app.set('trust proxy', true);  // to use https below
@@ -28,10 +28,10 @@ app.use(
 app.use(currentUser);
 
 
-app.use(createTicketRouter);
-app.use(showTicketRouter);
-app.use(showAllTicketsRouter);
-app.use(updateTicketRouter);
+app.use(deleteOrderRouter);
+app.use(newOrderRouter);
+app.use(showAllOrdersRouter);
+app.use(showOrderRouter);
 
 
 
