@@ -18,6 +18,10 @@ spec:
             backend:
               serviceName: tickets-srv     # send it to this service
               servicePort: 3000
+          - path: /api/orders/?(.*)    # any request to this
+            backend:
+              serviceName: orders-srv     # send it to this service
+              servicePort: 3000
           - path: /?(.*)    # any request to this
             backend:
               serviceName: client-srv     # send it to this service
