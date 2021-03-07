@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { OrderStatus } from '@e-commerce-social-media/common';
 import { TicketDoc } from './ticket';
 
+export { OrderStatus }
 
 // Describes the properties that is required to create a new Order
 interface OrderAttrs {

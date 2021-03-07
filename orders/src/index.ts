@@ -23,6 +23,8 @@ const start = async () =>{
         throw new Error('NATS_CLIENT_ID is not defined !!!');
     }
 
+    
+
     try{                
         //       ticketing is like what we put in infra file and the url also
         //                                          unique id
