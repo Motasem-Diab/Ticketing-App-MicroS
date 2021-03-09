@@ -137,3 +137,8 @@ NameSpace problem ($k get namespace): we can access another srv by type its url 
 ############################### -16- ###############################
 
 we will make a fake clientWrapper to make the tests pass (__mocks__) and modify the test uses NATS client (new.test.ts)
+
+
+############################### -19- ###############################
+
+- we will use ('mongoose-update-if-current') library to solve concurrency issues
