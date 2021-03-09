@@ -6,6 +6,7 @@ import { Order, OrderStatus } from './order';
 
 // Describes the properties that is required to create a new user
 interface TicketAttrs {
+    id: string;         // for data consistancy between services (Look at build method)
     title: string;
     price: number;
     // userId: string;
@@ -46,7 +47,12 @@ const ticketSchema = new mongoose.Schema({
 
 // Build the ticket by this to allow TS to do some validation
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-    return new Ticket(attrs)
+
+    return new Ticket({
+        _id: attrs.id,
+        title: attrs.title,
+        price: attrs.price
+    })
 }
 
 ticketSchema.methods.isReserved = async function () {
