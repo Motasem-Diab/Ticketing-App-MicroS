@@ -5,6 +5,9 @@ import { TicketDoc } from './ticket';
 
 export { OrderStatus }
 
+// to use it in concurrency issues chapter 19
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
+
 // Describes the properties that is required to create a new Order
 interface OrderAttrs {
     userId: string;
@@ -24,6 +27,7 @@ interface OrderDoc extends mongoose.Document {
     status: OrderStatus;
     expiresAt: Date ;
     ticket: TicketDoc;
+    version: number;
 }
 
 const orderSchema = new mongoose.Schema({
@@ -52,7 +56,11 @@ const orderSchema = new mongoose.Schema({
             delete ret._id;
         }
     }
-});     
+});
+
+// to use it in concurrency issues chapter 19
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
 
 
 // Build the ticket by this to allow TS to do some validation

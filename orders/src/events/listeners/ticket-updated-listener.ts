@@ -14,10 +14,11 @@ export class TicketUpdatedListener extends Listener<TicketUpdatedEvent>{
         // const ticket = await Ticket.findById(id);
 
         // to use it in concurrency issues chapter 19
-        const ticket = await Ticket.findOne({ 
-            _id:id,
-            version: data.version - 1
-        });
+        // const ticket = await Ticket.findOne({ 
+        //     _id:id,
+        //     version: data.version - 1
+        // });
+        const ticket = await Ticket.findByEvent(data);
 
 
         if(!ticket){
