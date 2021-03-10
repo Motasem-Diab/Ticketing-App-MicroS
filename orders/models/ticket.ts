@@ -3,6 +3,9 @@
 import mongoose from 'mongoose';
 import { Order, OrderStatus } from './order';
 
+// to use it in concurrency issues chapter 19
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
+
 
 // Describes the properties that is required to create a new user
 interface TicketAttrs {
@@ -21,6 +24,7 @@ interface TicketModel extends mongoose.Model<TicketDoc> {
 export interface TicketDoc extends mongoose.Document {
     title: string;
     price: number;
+    version: number;            // to use it in concurrency issues chapter 19
     isReserved(): Promise<boolean>;
 }
 
@@ -42,7 +46,11 @@ const ticketSchema = new mongoose.Schema({
             delete ret._id;
         }
     }
-});     
+});
+
+// to use it in concurrency issues chapter 19
+ticketSchema.set('versionKey', 'version');
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 
 // Build the ticket by this to allow TS to do some validation
