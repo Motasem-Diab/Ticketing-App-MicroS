@@ -7,6 +7,8 @@ import { natsWrapper } from '../../nats-wrapper';
 
 // jest.mock('../../nats-wrapper');  // Make a fake NATS client to pass the tests
 
+import { Ticket } from '../../models/ticket';
+
 
 it('returns 404 if provided id does not exist', async () => {
     const id = mongoose.Types.ObjectId().toHexString();
@@ -131,4 +133,30 @@ it('Publishes an Event', async ()=> {
     
     // console.log(natsWrapper);
     expect(natsWrapper.client.publish).toHaveBeenCalled();
+});
+
+
+it('rejects the update if the ticket is reserved', async ()=> { 
+    const cookie = global.signin();
+
+    const response = await request(app)
+        .post('/api/tickets')
+        .set('Cookie', cookie)
+        .send({
+            title: 'ticket1',
+            price: 1
+        });
+
+    const ticket = await Ticket.findById(response.body.id);
+    ticket!.set({ orderId: mongoose.Types.ObjectId().toHexString() });
+    await ticket!.save();
+    
+    await request(app)
+        .put(`/api/tickets/${response.body.id}`)
+        .set('Cookie', cookie)
+        .send({
+            title: 'ticket1.1',
+            price: 10
+        })
+        .expect(400)
 });

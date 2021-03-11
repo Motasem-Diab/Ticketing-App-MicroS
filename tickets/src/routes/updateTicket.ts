@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express' ;
 import { body } from 'express-validator';
 import { Ticket } from '../models/ticket';
-import { requireAuth, validateRequest, NotFoundError, NotAuthorizedError } from '@e-commerce-social-media/common';
+import { requireAuth, validateRequest, NotFoundError, NotAuthorizedError, BadRequesError } from '@e-commerce-social-media/common';
 
 import { TicketUpdatedPublisher } from '../events/publishers/TicketUpdatedPublisher';
 import { natsWrapper } from '../nats-wrapper';
@@ -26,6 +26,10 @@ async (req:Request, res:Response) => {
 
     if(ticket.userId !== req.currentUser!.id){
         throw new NotAuthorizedError();
+    }
+
+    if(ticket.orderId){
+        throw new BadRequesError('Ticket is reserved now ....');
     }
 
     ticket.set({
