@@ -22,6 +22,7 @@ interface TicketDoc extends mongoose.Document {
     price: number;
     userId: string;
     version: number;        // to use it in concurrency issues chapter 19
+    orderId?: string;    // to know the status of your ticket
 }
 
 const ticketSchema = new mongoose.Schema({
@@ -36,6 +37,9 @@ const ticketSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
+    },
+    orderId: {
+        type: String,
     }
 }, {
     toJSON: {   // It's invoked when trying to send, transform the doc to a JSON object 
