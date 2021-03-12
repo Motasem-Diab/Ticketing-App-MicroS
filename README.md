@@ -143,3 +143,8 @@ we will make a fake clientWrapper to make the tests pass (__mocks__) and modify 
 
 - we will use ('mongoose-update-if-current') library to solve concurrency issues
 - only primary service responsible for record emits an event to update/create/... will increament the version
+
+
+############################### -20- ############################### expiration service
+
+- we will use Redis instance to solve this
