@@ -24,5 +24,5 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name # to be unique
-            - name: REDIS_HOS
+            - name: REDIS_HOST
               value: expiration-redis-srv

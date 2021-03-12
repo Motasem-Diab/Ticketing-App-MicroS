@@ -16,6 +16,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
     - image: diabmotasem/client
       context: client
       docker:
@@ -24,6 +25,7 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
+
     - image: diabmotasem/tickets
       context: tickets
       docker:
@@ -32,6 +34,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    
     - image: diabmotasem/orders
       context: orders
       docker:
@@ -40,6 +43,7 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    
     - image: diabmotasem/expiration
       context: expiration
       docker:
