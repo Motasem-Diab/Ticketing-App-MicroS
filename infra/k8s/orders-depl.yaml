@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orders-depl
+  name: courseorders-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orders
+      app: courseorders
   template:
     metadata:
       labels:
-        app: orders
+        app: courseorders
     spec:
       containers:
-        - name: orders
-          image: diabmotasem/orders
+        - name: courseorders
+          image: diabmotasem/courseorders
           env:
             - name: MONGO_URI
-              value: 'mongodb://orders-mongo-srv:27017/orders' 
+              value: 'mongodb://courseorders-mongo-srv:27017/courseorders' 
             - name: JWT_KEY    # that can be seen inside the pod
               valueFrom:
                 secretKeyRef:     # from did command
@@ -35,12 +35,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: orders-srv
+  name: courseorders-srv
 spec:
   selector:
-    app: orders
+    app: courseorders
   ports:
-    - name: orders
+    - name: courseorders
       protocol: TCP
       port: 3000
       targetPort: 3000

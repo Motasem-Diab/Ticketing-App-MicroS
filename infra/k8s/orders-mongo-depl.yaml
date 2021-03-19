@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: orders-mongo-depl
+  name: courseorders-mongo-depl
 spec:
   replicas: 1
   selector:     # how to find the pods
     matchLabels:
-      app: orders-mongo
+      app: courseorders-mongo
   template:     # pod template
     metadata:
       labels:
-        app: orders-mongo
+        app: courseorders-mongo
     spec:
       containers:
-      - name: orders-mongo
+      - name: courseorders-mongo
         image: mongo      # from docker hub
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: orders-mongo-srv
+  name: courseorders-mongo-srv
 spec:
   selector:
-    app: orders-mongo
+    app: courseorders-mongo
   ports:
     - name: db        # only for logging purpose
       protocol: TCP
