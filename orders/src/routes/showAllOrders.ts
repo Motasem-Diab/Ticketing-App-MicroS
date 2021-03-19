@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express' ;
-import { requireAuth, validateRequest } from '@e-commerce-social-media/common';
+import { requireAuth } from '@e-commerce-social-media/common';
 import { Order } from '../../models/order';
 
 
