@@ -57,6 +57,9 @@ orderSchema.set('versionKey', 'version');
 orderSchema.plugin(updateIfCurrentPlugin);
 
 
+// Can do find by event
+
+
 // Build the ticket by this to allow TS to do some validation
 orderSchema.statics.build = (attrs: OrderAttrs) => {
     return new Order({

@@ -26,17 +26,17 @@ build:
           - src: '**/*.js'
             dest: .
 
-    - image: diabmotasem/tickets
-      context: tickets
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.ts'
-            dest: .
+    # - image: diabmotasem/tickets
+    #   context: tickets
+    #   docker:
+    #     dockerfile: Dockerfile
+    #   sync:
+    #     manual:
+    #       - src: 'src/**/*.ts'
+    #         dest: .
     
     - image: diabmotasem/courseorders
-      context: courseorders
+      context: orders
       docker:
         dockerfile: Dockerfile
       sync:
