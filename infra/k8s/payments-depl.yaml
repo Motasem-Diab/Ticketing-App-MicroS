@@ -31,6 +31,11 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name # to be unique
+            - name: STRIPE_KEY    # that can be seen inside the pod
+              valueFrom:
+                secretKeyRef:     # from did command
+                  name: stripe-secret
+                  key: STRIPE_KEY 
 ---
 apiVersion: v1
 kind: Service

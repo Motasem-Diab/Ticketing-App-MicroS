@@ -10,7 +10,7 @@ import jwt from 'jsonwebtoken';
 declare global {
     namespace NodeJS {
         interface Global {
-            signin() : string[]
+            signin(id?:string) : string[]
         }
     }
 }
@@ -51,12 +51,12 @@ afterAll( async () => {
 
 
 // Or make it in a seperate file and export it as regular
-global.signin =  () => {
+global.signin =  (id?:string) => {
     // We will made a fake jwt
     // Build a JWT payload. {id, email}
 
     const payload = {
-        id: new mongoose.Types.ObjectId().toHexString(), // only to make it random
+        id: id || new mongoose.Types.ObjectId().toHexString(), // only to make it random
         email: 'test@test.com'
     }
 

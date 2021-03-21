@@ -10,6 +10,10 @@ spec:
     - host: ticketing.dev     # pretended domain name
       http:
         paths:
+          - path: /api/payments/?(.*)    # any request to this
+            backend:
+              serviceName: payments-srv     # send it to this service
+              servicePort: 3000
           - path: /api/users/?(.*)    # any request to this
             backend:
               serviceName: auth-srv     # send it to this service

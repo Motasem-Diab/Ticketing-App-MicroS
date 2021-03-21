@@ -8,6 +8,8 @@ import { NotFoundError } from '@e-commerce-social-media/common';
 
 import { currentUser } from '@e-commerce-social-media/common';
 
+import { createChargeRouter } from './routes/new';
+
 
 const app = express();
 app.set('trust proxy', true);  // to use https below
@@ -23,8 +25,7 @@ app.use(
 
 app.use(currentUser);
 
-
-
+app.use(createChargeRouter);
 
 app.all('*', async()=>{
     throw new NotFoundError();
