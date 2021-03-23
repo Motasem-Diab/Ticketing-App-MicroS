@@ -19,6 +19,10 @@ declare global {
 jest.mock('../nats-wrapper');  // Make a fake NATS client to pass the tests
 
 
+// Method #2 of testing stripe
+process.env.STRIPE_KEY = 'sk_test_51IXCDCHWW4djhLD2rtJeZuMFtP8QALuBNEBQatxqgTUSkYptIr9aDQ2nLas6wcmKvqcKCGSh0xVoptIeDII0cjq400NN0XSaMV';
+
+
 let mongo: any ;
 beforeAll( async ()=> {
 
