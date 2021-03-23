@@ -22,10 +22,11 @@ app.use(
         secure: process.env.NODE_ENV !== 'test'   // only with https connection
     })
 )
-
 app.use(currentUser);
 
+
 app.use(createChargeRouter);
+
 
 app.all('*', async()=>{
     throw new NotFoundError();

@@ -53,14 +53,14 @@ build:
           - src: 'src/**/*.ts'
             dest: .
     
-    # - image: diabmotasem/payments
-    #   context: payments
-    #   docker:
-    #     dockerfile: Dockerfile
-    #   sync:
-    #     manual:
-    #       - src: 'src/**/*.ts'
-    #         dest: .
+    - image: diabmotasem/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 
 
 # apiVersion: skaffold/v2alpha3   # automate any change in infra files or in code or rebuild the image if change in dependencies
