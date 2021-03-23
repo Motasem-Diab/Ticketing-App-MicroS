@@ -6,6 +6,8 @@ import { Order } from '../../models/order';
 
 import { stripe } from '../../stripe';
 
+import { Payment } from '../../models/payment';
+
 // replaced with testing method #2 (more realistic)
 // jest.mock('../../stripe');
 
@@ -100,5 +102,10 @@ it('returns a 201 with valid payment inputs', async () => {
     expect(stripeCharge!.currency).toEqual('usd');
     expect(stripeCharge!.amount).toEqual(price * 100);
 
+    const payment = Payment.findOne({
+      orderId: order.id,
+      stripeId: stripeCharge!.id,
+    });
+    expect(payment).not.toBeNull();
 
 }, 50000);
