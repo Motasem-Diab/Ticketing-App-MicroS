@@ -148,3 +148,10 @@ we will make a fake clientWrapper to make the tests pass (__mocks__) and modify 
 ############################### -20- ############################### expiration service
 
 - we will use Redis instance to solve this
+
+
+
+############################### -23- ############################### CI/CD
+
+GitHub Event and action
+- inside the auth test action we put a command to run ($npm run test:ci) to run the test once only
