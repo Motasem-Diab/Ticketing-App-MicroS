@@ -155,3 +155,5 @@ we will make a fake clientWrapper to make the tests pass (__mocks__) and modify 
 
 GitHub Event and action
 - inside the auth test action we put a command to run ($npm run test:ci) to run the test once only
+
+- he will user digital ocean for deployment
