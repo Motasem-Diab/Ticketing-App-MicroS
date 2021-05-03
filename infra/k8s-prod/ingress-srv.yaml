@@ -1,0 +1,68 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'     # you can have regex inside file names below
+spec:
+  rules:
+    - host: ticketing.dev     # pretended domain name
+      http:
+        paths:
+          - path: /api/payments/?(.*)    # any request to this
+            backend:
+              serviceName: payments-srv     # send it to this service
+              servicePort: 3000
+          - path: /api/users/?(.*)    # any request to this
+            backend:
+              serviceName: auth-srv     # send it to this service
+              servicePort: 3000
+          - path: /api/tickets/?(.*)    # any request to this
+            backend:
+              serviceName: tickets-srv     # send it to this service
+              servicePort: 3000
+          - path: /api/orders/?(.*)    # any request to this
+            backend:
+              serviceName: courseorders-srv     # send it to this service
+              servicePort: 3000
+          - path: /?(.*)    # any request to this
+            backend:
+              serviceName: client-srv     # send it to this service
+              servicePort: 3000
+
+
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: ingress-service
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     nginx.ingress.kubernetes.io/use-regex: 'true'     # you can have regex inside file names below
+# spec:
+#   rules:
+#     - host: ticketing.dev         # pretended domain name
+#       http:
+#         paths:
+#           - path: /api/users/?(.*)    # any request to this
+#             backend:
+#               serviceName: auth-srv     # send it to this service
+#               servicePort: 3000
+
+
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: ingress-service
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     nginx.ingress.kubernetes.io/use-regex: 'true'
+# spec:
+#   rules:
+#     - host: ticketing.dev
+#       http:
+#         paths:
+#           - path: /api/users/?(.*)
+#             backend:
+#               serviceName: auth-srv
+#               servicePort: 3000
