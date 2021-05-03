@@ -157,3 +157,30 @@ GitHub Event and action
 - inside the auth test action we put a command to run ($npm run test:ci) to run the test once only
 
 - he will user digital ocean for deployment
+
+- make test files for pull request test before merging
+- make deployment files to deploy the changes after the merging
+
+# -------- Digital Ocean Deployment -------
+- signup/in to DO
+- create cluster with matrix you want we made it with "3" nodes, and choose a name
+
+## trying to connect to that cluster from our local machine using kubectl:
+- we will make it for debugging purpuse:
+  - change the context:
+    - install management tool from (github.com/digitalocean/doctl)
+    - to ensure that installation is OK ($doctl) you will see help
+    - GET the API token from digital ocean dashboard
+    - run ($doctl auth init) in your terminal and paste the token
+  - ($ doctl kubernetes cluster kubeconfig save <cluster_name>)
+  - the context is changed, (the kuberntes connected to the DO cluster not local, any k command will be affected as in DO)
+
+($k get pods)
+($k get nodes): list all running nodes
+($k config view): list connection information <look for contexts section, name attr specially>
+($k config use-context <context name from above command"docker-desktop">): change "swap" the context to e.g. local kubernetes
+- we can swap the context from docker tap up 
+# ################################################################
+
+- add deployment for DO in deploy-auth in GitHub
+- make a new file named "deploy-manifests" in workflow dir
